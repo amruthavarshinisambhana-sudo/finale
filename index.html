@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Code Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+    label, input, select {
+      display: block;
+      margin: 10px 0;
+    }
+    #codeOutput {
+      margin-top: 20px;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Generate Unique Student Code</h2>
+
+  <label for="year">Year of Admission:</label>
+  <input type="number" id="year" placeholder="e.g. 2025" required>
+
+  <label for="department">Department Code:</label>
+  <input type="text" id="department" placeholder="e.g. CSE" required>
+
+  <label for="serial">Serial Number:</label>
+  <input type="number" id="serial" placeholder="e.g. 32" required>
+
+  <button onclick="generateCode()">Generate Code</button>
+
+  <div id="codeOutput"></div>
+
+  <script>
+    function generateCode() {
+      const year = document.getElementById('year').value;
+      const dept = document.getElementById('department').value.toUpperCase();
+      const serial = document.getElementById('serial').value.padStart(4, '0');
+
+      if (!year || !dept || !serial) {
+        document.getElementById('codeOutput').innerText = "Please fill in all fields.";
+        return;
+      }
+
+      const code = `STU-${year}-${dept}-${serial}`;
+      document.getElementById('codeOutput').innerText = `Generated Code: ${code}`;
+    }
+  </script>
+
+</body>
+</html>
